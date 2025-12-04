@@ -12,3 +12,4 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(run01 day01.cpp)
 add_executable(run02 day02.cpp)
+add_executable(run03 day03.cpp)
