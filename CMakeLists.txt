@@ -11,3 +11,4 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(run01 day01.cpp)
+add_executable(run02 day02.cpp)
