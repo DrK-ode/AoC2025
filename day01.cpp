@@ -16,8 +16,8 @@ const char* const EXAMPLE_FILE = "day01.ex";
 class Line
 {
  public:
-  string str;
-  int    line_number{0};
+  string      str;
+  int         line_number{0};
 
   friend void operator>>(istream& input_stream, Line& line)
   {
@@ -31,33 +31,36 @@ static vector<vector<string>> read_file(const char* file_name)
   ifstream    file(file_name);
   basic_regex regex(R"((L|R)(\d+))");
   return ranges::views::istream<Line>(file) |
-         ranges::views::transform([&regex](const Line& line)
-  {
-    match_results<string::const_iterator> match_results;
-    regex_match(line.str, match_results, regex);
-    auto to_string = [](auto& match) { return string(match.str()); };
-    return match_results | ranges::views::drop(1) | ranges::views::transform(to_string) |
-           ranges::to<vector>();
-  }) | ranges::to<vector>();
+         ranges::views::transform(
+             [&regex](const Line& line)
+             {
+               match_results<string::const_iterator> match_results;
+               regex_match(line.str, match_results, regex);
+               auto to_string = [](auto& match) { return string(match.str()); };
+               return match_results | ranges::views::drop(1) | ranges::views::transform(to_string) |
+                      ranges::to<vector>();
+             }) |
+         ranges::to<vector>();
 }
 
-const int DIAL_START       = 50;
-const int DIAL_UPPER_LIMIT = 100;
+const int  DIAL_START       = 50;
+const int  DIAL_UPPER_LIMIT = 100;
 
 static int solve1(const char* file_name)
 {
   int        dial   = DIAL_START;
   int        zeroes = 0;
-  const auto vec    = read_file(file_name) | ranges::views::transform([](const auto& line)
-  {
-    assert(line.size() == 2);
-    auto number = stoi(line[1]);
-    if (line[0][0] == 'L')
-    {
-      number *= -1;
-    }
-    return number;
-  });
+  const auto vec    = read_file(file_name) | ranges::views::transform(
+                                              [](const auto& line)
+                                              {
+                                                assert(line.size() == 2);
+                                                auto number = stoi(line[1]);
+                                                if (line[0][0] == 'L')
+                                                {
+                                                  number *= -1;
+                                                }
+                                                return number;
+                                              });
   for (auto number : vec)
   {
     dial += number;
@@ -123,10 +126,10 @@ struct Answers
 static void submit_answers(Answers correct_answers)
 {
   const Answers calculated_answers = {
-    .example1 = solve1(EXAMPLE_FILE),
-    .part1    = solve1(INPUT_FILE),
-    .example2 = solve2(EXAMPLE_FILE),
-    .part2    = solve2(INPUT_FILE),
+      .example1 = solve1(EXAMPLE_FILE),
+      .part1    = solve1(INPUT_FILE),
+      .example2 = solve2(EXAMPLE_FILE),
+      .part2    = solve2(INPUT_FILE),
   };
   println("Example 1 part 1: {}", calculated_answers.example1);
   println("Answer    part 1: {}", calculated_answers.part1);

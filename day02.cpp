@@ -15,8 +15,8 @@ using chrono::duration_cast;
 using chrono::high_resolution_clock;
 using chrono::microseconds;
 
-const char* const INPUT_FILE   = "day02.inp";
-const char* const EXAMPLE_FILE = "day02.ex";
+const char* const    INPUT_FILE    = "day02.inp";
+const char* const    EXAMPLE_FILE  = "day02.ex";
 
 static const int64_t pow10_array[] = {1,
                                       10,
@@ -50,7 +50,8 @@ static const int64_t pow10_array[] = {1,
 class NumInfo
 {
  public:
-  NumInfo() : number(0), digits(0)
+  NumInfo()
+      : number(0), digits(0)
   {
   }
   NumInfo(string_view strv)
@@ -194,14 +195,15 @@ int64_t solve2(const char* file_name)
       {
         sum += n.number;
       }
-    }
-    while (n.number++ <= end.number);
+    } while (n.number++ <= end.number);
   }
   return sum;
 };
 
-void submit_answers(const int64_t correct_example1, const int64_t correct_part1 = 0,
-                    const int64_t correct_example2 = 0, const int64_t correct_part2 = 0)
+void submit_answers(const int64_t correct_example1,
+                    const int64_t correct_part1    = 0,
+                    const int64_t correct_example2 = 0,
+                    const int64_t correct_part2    = 0)
 {
   const int64_t example1 = solve1(EXAMPLE_FILE);
   println("Example part 1: {}", example1);

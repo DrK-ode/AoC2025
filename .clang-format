@@ -1,6 +1,5 @@
 ---
 Language:        Cpp
-# BasedOnStyle:  Google
 AccessModifierOffset: -1
 AlignAfterOpenBracket: Align
 AlignArrayOfStructures: None
@@ -59,8 +58,8 @@ AlwaysBreakBeforeMultilineStrings: true
 AlwaysBreakTemplateDeclarations: Yes
 AttributeMacros:
   - __capability
-BinPackArguments: true
-BinPackParameters: true
+BinPackArguments: false
+BinPackParameters: false
 BitFieldColonSpacing: Both
 BraceWrapping:
   AfterCaseLabel:  false
@@ -86,6 +85,11 @@ BreakAfterAttributes: Leave
 BreakAfterJavaFieldAnnotations: false
 BreakArrays:     true
 BreakBeforeBinaryOperators: None
+#BreakBeforeCloseBracketBracedList: true
+#BreakBeforeCloseBracketFunction: true
+#BreakBeforeCloseBracketIf: true
+#BreakBeforeCloseBracketLoop: true
+#BreakBeforeCloseBracketSwitch: true
 BreakBeforeConceptDeclarations: Always
 BreakBeforeBraces: Allman
 BreakBeforeInlineASMColon: OnlyMultiline
@@ -165,7 +169,7 @@ ObjCBlockIndentWidth: 2
 ObjCBreakBeforeNestedBlockParam: true
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
-PackConstructorInitializers: NextLine
+PackConstructorInitializers: NextLineOnly
 PenaltyBreakAssignment: 2
 PenaltyBreakBeforeFirstCallParameter: 1
 PenaltyBreakComment: 300
