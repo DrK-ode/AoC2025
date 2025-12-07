@@ -22,17 +22,16 @@ auto read_file(const string& file_name) -> vector<vector<int>>
   string              str;
   while (getline(file, str))
   {
-    const basic_regex regex(R"((\d))");
-    const auto        match_begin    = sregex_iterator(str.begin(), str.end(), regex);
-    const auto        match_end      = sregex_iterator();
-    const auto        match_to_digit = [](const auto& match) { return stoi(match.str()); };
-    lines.emplace_back(ranges::subrange(match_begin, match_end) |
-                       ranges::views::transform(match_to_digit) | ranges::to<vector>());
+    stringstream                 ss(str);
+    const istream_iterator<char> iter(ss);
+    lines.emplace_back(ranges::subrange(iter, istream_iterator<char>{}) |
+                       ranges::views::transform([](const char c) noexcept { return c - '0'; }) |
+                       ranges::to<vector>());
   }
   return lines;
 };
 
-int64_t solve(const string& file_name, int n)
+int64_t solve(const string& file_name, const int n)
 {
   vector<int> batteries_on;
   batteries_on.resize(n);
@@ -41,7 +40,7 @@ int64_t solve(const string& file_name, int n)
     auto search_start = batteries_all.begin();
     for (int battery_idx = 0; battery_idx < n; ++battery_idx)
     {
-      search_start              = max_element(search_start, batteries_all.end() + battery_idx - n);
+      search_start = max_element(search_start, batteries_all.end() + battery_idx - n + 1);
       batteries_on[battery_idx] = *search_start++;
     }
     return ranges::fold_left_first(batteries_on,
