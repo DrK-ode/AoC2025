@@ -5,7 +5,7 @@ project(
   LANGUAGES CXX
 )
 
-set(CMAKE_CXX_FLAGS "-std=c++26 -O3 -march=native -pedantic -pedantic-errors -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wswitch-default -Wundef -Werror -Wno-unused")
+set(CMAKE_CXX_FLAGS "-std=c++26 -O3 -march=native -pedantic -pedantic-errors -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wswitch-default -Wundef -Werror -Wno-unused -Wmisleading-indentation")
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -20,3 +20,4 @@ add_executable(run05 day05.cpp)
 add_executable(run06 day06.cpp)
 add_executable(run07 day07.cpp)
 add_executable(run08 day08.cpp)
+add_executable(run09 day09.cpp)
